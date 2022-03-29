@@ -32,6 +32,9 @@ namespace WindowsFormsApp1
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataInforme = new System.Windows.Forms.DataGridView();
@@ -40,6 +43,8 @@ namespace WindowsFormsApp1
             this.MarcaClase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FrecuenciaObservada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FrecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataChi = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,12 +57,13 @@ namespace WindowsFormsApp1
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.graficoHistograma = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HipotesisTxt = new System.Windows.Forms.Label();
+            this.graficoFrecEsperada = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.hipotesisNulaTxt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataInforme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistograma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoFrecEsperada)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -120,6 +126,16 @@ namespace WindowsFormsApp1
             // 
             this.FrecuenciaEsperada.HeaderText = "Frecuencia esperada";
             this.FrecuenciaEsperada.Name = "FrecuenciaEsperada";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "C()";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "C() Acumulado";
+            this.Column6.Name = "Column6";
             // 
             // dataChi
             // 
@@ -220,36 +236,56 @@ namespace WindowsFormsApp1
             series1.Legend = "Legend1";
             series1.Name = "Intervalos";
             this.graficoHistograma.Series.Add(series1);
-            this.graficoHistograma.Size = new System.Drawing.Size(777, 329);
+            this.graficoHistograma.Size = new System.Drawing.Size(687, 304);
             this.graficoHistograma.TabIndex = 21;
             this.graficoHistograma.Text = "chart1";
             this.graficoHistograma.Click += new System.EventHandler(this.graficoHistograma_Click);
             // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "C()";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "C() Acumulado";
-            this.Column6.Name = "Column6";
-            // 
             // HipotesisTxt
             // 
             this.HipotesisTxt.AutoSize = true;
-            this.HipotesisTxt.Location = new System.Drawing.Point(57, 656);
+            this.HipotesisTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HipotesisTxt.Location = new System.Drawing.Point(59, 667);
             this.HipotesisTxt.Name = "HipotesisTxt";
-            this.HipotesisTxt.Size = new System.Drawing.Size(35, 13);
+            this.HipotesisTxt.Size = new System.Drawing.Size(66, 24);
             this.HipotesisTxt.TabIndex = 22;
             this.HipotesisTxt.Text = "label4";
             this.HipotesisTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // graficoFrecEsperada
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.graficoFrecEsperada.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.graficoFrecEsperada.Legends.Add(legend2);
+            this.graficoFrecEsperada.Location = new System.Drawing.Point(736, 292);
+            this.graficoFrecEsperada.Name = "graficoFrecEsperada";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.graficoFrecEsperada.Series.Add(series2);
+            this.graficoFrecEsperada.Size = new System.Drawing.Size(463, 304);
+            this.graficoFrecEsperada.TabIndex = 23;
+            this.graficoFrecEsperada.Text = "chart1";
+            // 
+            // hipotesisNulaTxt
+            // 
+            this.hipotesisNulaTxt.AutoSize = true;
+            this.hipotesisNulaTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hipotesisNulaTxt.Location = new System.Drawing.Point(56, 620);
+            this.hipotesisNulaTxt.Name = "hipotesisNulaTxt";
+            this.hipotesisNulaTxt.Size = new System.Drawing.Size(66, 24);
+            this.hipotesisNulaTxt.TabIndex = 24;
+            this.hipotesisNulaTxt.Text = "label4";
+            this.hipotesisNulaTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 749);
+            this.Controls.Add(this.hipotesisNulaTxt);
+            this.Controls.Add(this.graficoFrecEsperada);
             this.Controls.Add(this.HipotesisTxt);
             this.Controls.Add(this.graficoHistograma);
             this.Controls.Add(this.label3);
@@ -266,6 +302,7 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.dataInforme)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataChi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistograma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoFrecEsperada)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,5 +333,7 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Label HipotesisTxt;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoFrecEsperada;
+        private System.Windows.Forms.Label hipotesisNulaTxt;
     }
 }

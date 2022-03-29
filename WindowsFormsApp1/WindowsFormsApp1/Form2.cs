@@ -147,7 +147,7 @@ namespace WindowsFormsApp1
 
                 graficoHistograma.Series.Clear();
                 graficoHistograma.Titles.Clear();
-                graficoHistograma.Titles.Add("HISTOGRAMA");
+                graficoHistograma.Titles.Add("HISTOGRAMA FREC OBSERVADA");
                 graficoHistograma.Palette = ChartColorPalette.Berry;
                 foreach (var item in items)
                 {
@@ -158,11 +158,29 @@ namespace WindowsFormsApp1
                     ser.Name = label;
                     ser.Points.Add((double)item.FrecuenciaObservada);
                 }
+
+
+                graficoFrecEsperada.Series.Clear();
+                graficoFrecEsperada.Titles.Clear();
+                graficoFrecEsperada.Titles.Add("HISTOGRAMA FREC ESPERADA");
+                graficoFrecEsperada.Palette = ChartColorPalette.Berry;
+                foreach (var item in items)
+                {
+                    var serie = item.Desde.ToString();
+                    Series ser = graficoFrecEsperada.Series.Add(serie);
+                    var label = "[" + item.Desde.ToString() + " - " + item.Hasta.ToString() + "]";
+                    ser.Label = item.FrecuenciaEsperada.ToString();
+                    ser.Name = label;
+                    ser.Points.Add((double)item.FrecuenciaEsperada);
+                }
+
             }
 
-            var seAcepta = "Se acepta la hipotesis";
+            hipotesisNulaTxt.Text = "Hipótesis nula: “la serie de datos corresponde a una distribución uniforme entre 0 y 1”.";
 
-            var noSeAcepta = "No se acepta la hipotesis";
+            var seAcepta = "NO SE RECHAZA LA HIPOTESIS";
+
+            var noSeAcepta = "SE RECHAZA LA HIPOTESIS";
 
             if(cantInt == 5)
             {
