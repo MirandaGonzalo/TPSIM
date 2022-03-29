@@ -52,6 +52,9 @@ namespace WindowsFormsApp1
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.graficoHistograma = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HipotesisTxt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataInforme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistograma)).BeginInit();
@@ -85,10 +88,12 @@ namespace WindowsFormsApp1
             this.Hasta,
             this.MarcaClase,
             this.FrecuenciaObservada,
-            this.FrecuenciaEsperada});
+            this.FrecuenciaEsperada,
+            this.Column5,
+            this.Column6});
             this.dataInforme.Location = new System.Drawing.Point(60, 110);
             this.dataInforme.Name = "dataInforme";
-            this.dataInforme.Size = new System.Drawing.Size(544, 176);
+            this.dataInforme.Size = new System.Drawing.Size(741, 176);
             this.dataInforme.TabIndex = 8;
             // 
             // Desde
@@ -209,7 +214,7 @@ namespace WindowsFormsApp1
             this.graficoHistograma.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graficoHistograma.Legends.Add(legend1);
-            this.graficoHistograma.Location = new System.Drawing.Point(60, 292);
+            this.graficoHistograma.Location = new System.Drawing.Point(43, 292);
             this.graficoHistograma.Name = "graficoHistograma";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -220,11 +225,32 @@ namespace WindowsFormsApp1
             this.graficoHistograma.Text = "chart1";
             this.graficoHistograma.Click += new System.EventHandler(this.graficoHistograma_Click);
             // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "C()";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "C() Acumulado";
+            this.Column6.Name = "Column6";
+            // 
+            // HipotesisTxt
+            // 
+            this.HipotesisTxt.AutoSize = true;
+            this.HipotesisTxt.Location = new System.Drawing.Point(57, 656);
+            this.HipotesisTxt.Name = "HipotesisTxt";
+            this.HipotesisTxt.Size = new System.Drawing.Size(35, 13);
+            this.HipotesisTxt.TabIndex = 22;
+            this.HipotesisTxt.Text = "label4";
+            this.HipotesisTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 749);
+            this.Controls.Add(this.HipotesisTxt);
             this.Controls.Add(this.graficoHistograma);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -267,5 +293,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoHistograma;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Label HipotesisTxt;
     }
 }

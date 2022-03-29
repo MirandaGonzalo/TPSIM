@@ -13,6 +13,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        public static double Acumulado;
+
         public Form2()
         {
             InitializeComponent();
@@ -58,11 +60,11 @@ namespace WindowsFormsApp1
                 var cantIntervalos = cantInt;
                 var numeros = Form1.numeros;
                 var leng = Form1.numeros.Count;
-                for (int i = 0; i < leng; i++)
-                {
-                    double _NúmeroDecimalAleatorio = random.NextDouble();
-                    numeros.Add((decimal)_NúmeroDecimalAleatorio);
-                }
+                //for (int i = 0; i < leng; i++)
+                //{
+                //    double _NúmeroDecimalAleatorio = random.NextDouble();
+                //    numeros.Add((decimal)_NúmeroDecimalAleatorio);
+                //}
                 List<int> frecObservada = new List<int>();
                 List<decimal> limitesSup = new List<decimal>();
                 for (int i = 0; i < cantIntervalos; i++)
@@ -88,7 +90,7 @@ namespace WindowsFormsApp1
                 var items = new List<Registro>();
                 var primero = true;
                 decimal acumuladorDesde = 0;
-                var frecEsperada = (leng / cantIntervalos);
+                var frecEsperada = (decimal)(leng / cantIntervalos);
                 for (int a = 0; a < cantIntervalos; a++)
                 {
                     var registro = new Registro();
@@ -110,31 +112,38 @@ namespace WindowsFormsApp1
                 }
 
                 decimal acumulado = 0;
+
                 for (int i = 0; i < items.Count(); i++)
                 {
+                    var estaditicoM = CalcularEstadistico(items[i].FrecuenciaObservada, items[i].FrecuenciaEsperada);
+                    acumulado += estaditicoM;
                     var fila = new string[]
                     {
                         items[i].Desde.ToString(),
                         items[i].Hasta.ToString(),
                         items[i].MarcaClase.ToString(),
                         items[i].FrecuenciaObservada.ToString(),
-                        items[i].FrecuenciaEsperada.ToString()
-                    };
-                    dataInforme.Rows.Add(fila);
-
-                    var estaditicoM = CalcularEstadistico(items[i].FrecuenciaObservada, items[i].FrecuenciaEsperada);
-                    acumulado += estaditicoM;
-                    var filaChi = new string[]
-                    {
-                        items[i].Desde.ToString(),
-                        items[i].Hasta.ToString(),
-                        items[i].FrecuenciaObservada.ToString(),
                         items[i].FrecuenciaEsperada.ToString(),
                         estaditicoM.ToString(),
                         acumulado.ToString()
+                        
                     };
-                    dataChi.Rows.Add(filaChi);
+                    dataInforme.Rows.Add(fila);
+
+
+                    //var filaChi = new string[]
+                    //{
+                    //    items[i].Desde.ToString(),
+                    //    items[i].Hasta.ToString(),
+                    //    items[i].FrecuenciaObservada.ToString(),
+                    //    items[i].FrecuenciaEsperada.ToString(),
+                    //    estaditicoM.ToString(),
+                    //    acumulado.ToString()
+                    //};
+                    //dataChi.Rows.Add(filaChi);
                 }
+                Acumulado = (double) (Math.Truncate(acumulado * 10000) / 10000);
+                //HipotesisTxt.Text = x.ToString();
 
                 graficoHistograma.Series.Clear();
                 graficoHistograma.Titles.Clear();
@@ -149,18 +158,57 @@ namespace WindowsFormsApp1
                     ser.Name = label;
                     ser.Points.Add((double)item.FrecuenciaObservada);
                 }
-            }   
+            }
+
+            var seAcepta = "Se acepta la hipotesis";
+
+            var noSeAcepta = "No se acepta la hipotesis";
+
+            if(cantInt == 5)
+            {
+                if(Acumulado > 9.49)
+                {
+                    HipotesisTxt.Text = noSeAcepta;
+                }
+                else { HipotesisTxt.Text = seAcepta; };
+            }
+            else if (cantInt == 10)
+            {
+                if (Acumulado > 16.9)
+                {
+                    HipotesisTxt.Text = noSeAcepta;
+                }
+                else { HipotesisTxt.Text = seAcepta; };
+            }
+            else if (cantInt == 20)
+            {
+                if (Acumulado > 30.1)
+                {
+                    HipotesisTxt.Text = noSeAcepta;
+                }
+                else { HipotesisTxt.Text = seAcepta; };
+            }
+            else{
+                if (Acumulado > 36.4)
+                {
+                    HipotesisTxt.Text = noSeAcepta;
+                }
+                else { HipotesisTxt.Text = seAcepta; };
+            }
+
         }
 
         private decimal CalcularEstadistico(decimal frecuenciaO, decimal frecuenciaE)
         {
             decimal result = (frecuenciaO - frecuenciaE) * (frecuenciaO - frecuenciaE) / (frecuenciaE);
-            return result;
+            var Resultado = Math.Truncate(result * 10000) / 10000;
+            return Resultado;
         }
 
         private void graficoHistograma_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }

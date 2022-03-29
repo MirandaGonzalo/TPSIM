@@ -68,6 +68,7 @@ namespace WindowsFormsApp1
                         item.numeroRandom.ToString(),
                     };
                     DgvTablaIteraciones.Rows.Add(fila);
+                    numeros.Add(item.numeroRandom);
                 }
             }
             else
@@ -187,13 +188,13 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.Rows.Clear();
             var cantMuestras = n;
             Random random = new Random();
-            var numerosAleatorios = new List<double>();
+            var numerosAleatorios = new List<decimal>();
             var segundo = " ";
             for (int i = 0; i < cantMuestras; i++)
             {
                 double _NúmeroDecimalAleatorio = random.NextDouble();
                 _NúmeroDecimalAleatorio = Math.Truncate(_NúmeroDecimalAleatorio * 10000) / 10000;
-                numerosAleatorios.Add(_NúmeroDecimalAleatorio);
+                numerosAleatorios.Add((decimal)_NúmeroDecimalAleatorio);
             }
 
             foreach (var numero in numerosAleatorios)
@@ -206,6 +207,7 @@ namespace WindowsFormsApp1
                     numero.ToString()
                 };
                 DgvTablaIteraciones.Rows.Add(fila);
+                numeros = numerosAleatorios;
             }
 
         }
