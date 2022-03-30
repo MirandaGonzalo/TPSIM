@@ -60,6 +60,7 @@ namespace WindowsFormsApp1
             this.HipotesisTxt = new System.Windows.Forms.Label();
             this.graficoFrecEsperada = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.hipotesisNulaTxt = new System.Windows.Forms.Label();
+            this.mediaTxt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataInforme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataChi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistograma)).BeginInit();
@@ -239,7 +240,6 @@ namespace WindowsFormsApp1
             this.graficoHistograma.Size = new System.Drawing.Size(687, 304);
             this.graficoHistograma.TabIndex = 21;
             this.graficoHistograma.Text = "chart1";
-            this.graficoHistograma.Click += new System.EventHandler(this.graficoHistograma_Click);
             // 
             // HipotesisTxt
             // 
@@ -279,11 +279,21 @@ namespace WindowsFormsApp1
             this.hipotesisNulaTxt.Text = "label4";
             this.hipotesisNulaTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
+            // mediaTxt
+            // 
+            this.mediaTxt.AutoSize = true;
+            this.mediaTxt.Location = new System.Drawing.Point(849, 110);
+            this.mediaTxt.Name = "mediaTxt";
+            this.mediaTxt.Size = new System.Drawing.Size(35, 13);
+            this.mediaTxt.TabIndex = 25;
+            this.mediaTxt.Text = "label4";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 749);
+            this.Controls.Add(this.mediaTxt);
             this.Controls.Add(this.hipotesisNulaTxt);
             this.Controls.Add(this.graficoFrecEsperada);
             this.Controls.Add(this.HipotesisTxt);
@@ -335,5 +345,6 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label HipotesisTxt;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoFrecEsperada;
         private System.Windows.Forms.Label hipotesisNulaTxt;
+        private System.Windows.Forms.Label mediaTxt;
     }
 }

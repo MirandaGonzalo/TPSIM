@@ -316,7 +316,6 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.TxtA);
             this.Name = "Form1";
             this.Text = "GENERADOR DE NUMERO PSEUDOALEATORIOS";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTablaIteraciones)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

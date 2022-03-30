@@ -26,15 +26,18 @@ namespace WindowsFormsApp1
 
         private void generarMetodoCongruencialMixto(int n)
         {
+            //limpiamos la tabla de numeros random
             DgvTablaIteraciones.Rows.Clear();
-
+            //se crea la lista de objetos iteracion para guadar los datos de los numneros pseudoaleatorios creados
             var listaIteracion = new List<Iteracion>();
 
+            // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
             var semilla = Convert.ToInt32(TxtSemilla.Text);
             var a = Convert.ToInt32(TxtA.Text);
             var m = Convert.ToInt32(TxtM.Text);
             var c = Convert.ToInt32(TxtC.Text);
 
+            // asigamos los datos de los parametros al objeto generador
             generador.semilla = semilla;
             generador.valorA = a;
             generador.valorM = m;
@@ -42,23 +45,31 @@ namespace WindowsFormsApp1
 
             var cantMuestras = n;
 
+            // validamos los datos ingresados que  sean correctos
             if (generador.validarDatosIngresados(generador))
             {
                 var cantMuestrasCalc = cantMuestras + 1;
+                //iteramos segun la cantidad de valores ingresados por teclado o seteado a 20
                 for (var iteracion = 1; cantMuestrasCalc > iteracion; iteracion++)
                 {
+                    // se crea el numero pseudoaleatorio llamando al metodo del objeto generador 
+                    // que se encarga de realizar el calculo de dicho nuemro RND
                     decimal NroRandom = (decimal)generador.GeneradorRandomCongruencial(generador);
 
+                    // creamos un objeto iteracion para guardar los datos creados
                     var itera = new Iteracion()
                     {
                         numneroIteracion = iteracion,
                         valorRaizX = generador.semilla,
+                        //truncamos el valor del RND obtenido
                         numeroRandom = Math.Truncate(NroRandom * 10000) / 10000
                     };
-
+                    //agregamos a la lista cada iteracion para luego ser mostrada
                     listaIteracion.Add(itera);
                 }
+                
 
+                //recorremos la lista de iteraciones para ser mostrados por tabla grafica
                 foreach (var item in listaIteracion)
                 {
                     var fila = new string[]
@@ -68,6 +79,8 @@ namespace WindowsFormsApp1
                         item.numeroRandom.ToString(),
                     };
                     DgvTablaIteraciones.Rows.Add(fila);
+                    //agregamos los numeros generados a una lista que luego se la pasaremos al 
+                    //formulario 2 para realizar la parte de la tabla de frecuencia y prueba de bondad
                     numeros.Add(item.numeroRandom);
                 }
             }
@@ -78,8 +91,10 @@ namespace WindowsFormsApp1
 
         }
 
+        //este metodo nos permite generar otro numero pseudoaleatorio con el metodo cong mixto a la vez
         private void generarOtroCongruencialMIxto()
         {
+            // volvemos a llamar a la funcion del objeto generar que realiza el calculo
             decimal NroRandom = (decimal)generador.GeneradorRandomCongruencial(generador);
             var numeroRandom = Math.Truncate(NroRandom * 10000) / 10000;
             var fila = new string[]
@@ -91,6 +106,7 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.Rows.Add(fila);
         }
 
+        //este metodo nos permite generar otro numero pseudoaleatorio con el metodo cong multiplicativo a la vez
         private void generarOtroCongruencialMultiplicativo()
         {
             decimal NroRandom = (decimal)generador.GeneradorRandomMultiplicativo(generador);
@@ -105,13 +121,19 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.Rows.Add(fila);
         }
 
+
+        //metodo que permite crear numeros aleatorios con el lenguaje c#
         private void generarOtroLenguaje()
         {
+            //creamos un objeto random que a partir de el podremos generar numeros RND
             Random random = new Random();
 
+            // metodo del objeto random que crea el RND
             double _NúmeroDecimalAleatorio = random.NextDouble();
+            //truncamos el RND
             _NúmeroDecimalAleatorio = Math.Truncate(_NúmeroDecimalAleatorio * 10000) / 10000;    
-            var segundo = " ";
+            var segundo = "-";
+            //mostramos el nuemro en la tabla
             var fila = new string[]
             {
                     (DgvTablaIteraciones.Rows.Count).ToString(),
@@ -137,10 +159,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
 
+        //SIMILIRA AL METODO generarMetodoCongruncial mixto salvo que llamamos al metodo 
+        // GeneradorRandomMultiplicativo del objeto generador
         private void GenerarMetodoCongruencialMultiplicativo(int n)
         {
 
@@ -151,20 +172,26 @@ namespace WindowsFormsApp1
             var semilla = Convert.ToInt32(TxtSemilla.Text);
             var a = Convert.ToInt32(TxtA.Text);
             var m = Convert.ToInt32(TxtM.Text);
-
+            
+            
+            //Asignasmos los datos al objeto generador
             generador.semilla = semilla;
             generador.valorA = a;
             generador.valorM = m;
 
             var cantMuestras = n;
 
+            // validamos los datos ingresados por parametro
             if (generador.validarDatosIngresados(generador))
             {
 
                 var cantMuestrasCalc = cantMuestras + 1;
+                //recorremos segun la cant ingresada o seteada a 20
                 for (var iteracion = 1; cantMuestrasCalc > iteracion; iteracion++)
-                {                    
+                {     
+                    //llamamos al metodo correspondiente para generar el valor RND
                     decimal NroRandom = (decimal)generador.GeneradorRandomMultiplicativo(generador);
+                    //generamos el string para mostrar en la tabla                   
                     var fila = new string[]
                     {
                         iteracion.ToString(),
@@ -183,20 +210,24 @@ namespace WindowsFormsApp1
         }
 
 
+        //metodo para generar numeros RND a partir del lenguaje c#
         private void generarMetodoLenguaje(int n)
         {
             DgvTablaIteraciones.Rows.Clear();
             var cantMuestras = n;
+            //creamos un objeto random que a partir de el podremos generar numeros RND
             Random random = new Random();
             var numerosAleatorios = new List<decimal>();
             var segundo = " ";
             for (int i = 0; i < cantMuestras; i++)
             {
+                // metodo del objeto random que crea el RND
                 double _NúmeroDecimalAleatorio = random.NextDouble();
                 _NúmeroDecimalAleatorio = Math.Truncate(_NúmeroDecimalAleatorio * 10000) / 10000;
+                // agregamos los numeros RND a una lista 
                 numerosAleatorios.Add((decimal)_NúmeroDecimalAleatorio);
             }
-
+            //recorremos la lista de los RND para ser mostrados por tabla
             foreach (var numero in numerosAleatorios)
             {
 
@@ -215,6 +246,7 @@ namespace WindowsFormsApp1
 
         private void BotonSimular_Click(object sender, EventArgs e)
         {
+            //cantidad de muestras seteados a 20 en caso que no se ingrese por parametro
             var n = 20;
             if (txtN.Text.Equals("") && CbGeneracionPorTeclado.Checked)
             {
@@ -223,14 +255,18 @@ namespace WindowsFormsApp1
             {
                 if (CbGeneracionPorTeclado.Checked)
                 {
+                    // si se selecciona ingresar n por teclado ,tomamos el valor ingresado
+
                     n = Convert.ToInt32(txtN.Text);
                 }
+                //segun se seleccione un metodod se invoca a la funcion correspondiente
                 if (RbCongruencialMIxto.Checked)
                 {
                     generarMetodoCongruencialMixto(n);
                 }
                 else if (RbCongruencialMulti.Checked)
                 {
+                    //activamos el boton para ingresar el valor C
                     TxtC.Enabled = true;
                     GenerarMetodoCongruencialMultiplicativo(n);
                 }
@@ -245,6 +281,7 @@ namespace WindowsFormsApp1
             habilitarTextBoxMulti();
         }
 
+        //METODOS PARA AHCER VISIBLE O NO A LOS TEXTBOX
         private void habilitarTextBoxMulti()
         {
             TxtA.Enabled = true;
@@ -288,10 +325,11 @@ namespace WindowsFormsApp1
             }
         }
 
+        // METODO QUE ABRE EL FORMULARIO 2 DE INFORMES .
         private void button2_Click(object sender, EventArgs e)
         {
             numeros.Clear();
-            for (int i = 0; i < DgvTablaIteraciones.Rows.Count-1; i++)
+            for (int i = 0; i < DgvTablaIteraciones.Rows.Count - 1; i++)
             {
                 var colI = Convert.ToDecimal(DgvTablaIteraciones.Rows[i].Cells[2].Value);
                 numeros.Add(colI);
