@@ -20,7 +20,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             generador = new Generador();
-            numeros = new List<decimal>(); 
+            numeros = new List<decimal>();
+            DgvTablaIteraciones.AllowUserToAddRows = false;
         }
 
 
@@ -32,9 +33,9 @@ namespace WindowsFormsApp1
             var listaIteracion = new List<Iteracion>();
 
             // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
-            var semilla = Convert.ToInt32(TxtSemilla.Text);
-            var a = Convert.ToInt32(TxtA.Text);
-            var m = Convert.ToInt32(TxtM.Text);
+            var semilla = Convert.ToInt64(TxtSemilla.Text);
+            var a = Convert.ToInt64(TxtA.Text);
+            var m = Convert.ToInt64(TxtM.Text);
             var c = Convert.ToInt32(TxtC.Text);
 
             // asigamos los datos de los parametros al objeto generador
@@ -233,7 +234,7 @@ namespace WindowsFormsApp1
 
                 var fila = new string[]
                 {
-                    (DgvTablaIteraciones.Rows.Count).ToString(),
+                    (DgvTablaIteraciones.Rows.Count + 1).ToString(),
                     segundo,
                     numero.ToString()
                 };
@@ -329,7 +330,7 @@ namespace WindowsFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             numeros.Clear();
-            for (int i = 0; i < DgvTablaIteraciones.Rows.Count - 1; i++)
+            for (int i = 0; i < DgvTablaIteraciones.Rows.Count; i++)
             {
                 var colI = Convert.ToDecimal(DgvTablaIteraciones.Rows[i].Cells[2].Value);
                 numeros.Add(colI);
@@ -337,6 +338,11 @@ namespace WindowsFormsApp1
             Form2 frm2 = new Form2();
             frm2.Show();
 
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            DgvTablaIteraciones.Rows.Clear();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
     {
         public int numneroIteracion { get; set; }
 
-        public int valorRaizX { get; set; }
+        public Int64 valorRaizX { get; set; }
 
         public decimal numeroRandom { get; set; }
     }

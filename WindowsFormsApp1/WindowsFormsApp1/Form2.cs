@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
+            dataInforme.AllowUserToAddRows = false;
         }
 
         private int getCantIntervalos(string selected)
@@ -27,17 +28,17 @@ namespace WindowsFormsApp1
             {
                 return 5;
             }
+            else if (selected.Equals("8 intervalos"))
+            {
+                return 8;
+            }
             else if (selected.Equals("10 intervalos"))
             {
                 return 10;
             }
-            else if (selected.Equals("20 intervalos"))
+            else if (selected.Equals("12 intervalos"))
             {
-                return 20;
-            }
-            else if (selected.Equals("25 intervalos"))
-            {
-                return 25;
+                return 12;
             } 
             else
             {
@@ -103,10 +104,8 @@ namespace WindowsFormsApp1
 
                 //CALCULAMOS LA MEDIA DE LA SERIE GENERADA
                 var media = AcumuladorMedia / (leng);
-                mediaTxt.Text = "La media es : " + media.ToString();
+                //mediaTxt.Text = "La media es : " + Math.Truncate(media * 1000 / 10000).ToString();
                 
-
-
                 for (int a = 0; a < cantIntervalos; a++)
                 {
                     //creamos la variable registro y le asignamos sus atributos
@@ -145,6 +144,7 @@ namespace WindowsFormsApp1
                     //Armamos el string que mostraremos en la tabla grafica(dataGrid)
                     var fila = new string[]
                     {
+                        //items[i].Desde.ToString(),
                         items[i].Desde.ToString(),
                         items[i].Hasta.ToString(),
                         items[i].MarcaClase.ToString(),
@@ -152,7 +152,6 @@ namespace WindowsFormsApp1
                         items[i].FrecuenciaEsperada.ToString(),
                         estaditicoM.ToString(),
                         Acumulado.ToString()
-                        
                     };
                     dataInforme.Rows.Add(fila);
                     //var filaChi = new string[]
@@ -166,10 +165,6 @@ namespace WindowsFormsApp1
                     //};
                     //dataChi.Rows.Add(filaChi);
                 }
-
-
-
-
 
                 //GENERACION DE GRAFICO CON HERRAMIENTA CHART
 
@@ -210,49 +205,49 @@ namespace WindowsFormsApp1
                     ser.Points.Add((double)item.FrecuenciaEsperada);
                 }
 
-            }
+                hipotesisNulaTxt.Text = "Hipótesis nula: “la serie de datos corresponde a una distribución uniforme entre 0 y 1”.";
 
-            hipotesisNulaTxt.Text = "Hipótesis nula: “la serie de datos corresponde a una distribución uniforme entre 0 y 1”.";
+                var seAcepta = "NO SE RECHAZA LA HIPOTESIS";
 
-            var seAcepta = "NO SE RECHAZA LA HIPOTESIS";
+                var noSeAcepta = "SE RECHAZA LA HIPOTESIS";
 
-            var noSeAcepta = "SE RECHAZA LA HIPOTESIS";
+                // Comparamos el valor obtenido de la prueba de bondad de chi cuadrado 
+                // para saber si la serie generada pertenece a la distribucion uniforme
 
-            // Comparamos el valor obtenido de la prueba de bondad de chi cuadrado 
-            // para saber si la serie generada pertenece a la distribucion uniforme
-
-            if(cantInt == 5)
-            {
-                if(Acumulado > 9.49)
+                if (cantInt == 5)
                 {
-                    HipotesisTxt.Text = noSeAcepta;
+                    if (Acumulado > 9.49)
+                    {
+                        HipotesisTxt.Text = noSeAcepta;
+                    }
+                    else { HipotesisTxt.Text = seAcepta; };
                 }
-                else { HipotesisTxt.Text = seAcepta; };
-            }
-            else if (cantInt == 10)
-            {
-                if (Acumulado > 16.9)
+                else if (cantInt == 10)
                 {
-                    HipotesisTxt.Text = noSeAcepta;
+                    if (Acumulado > 16.9)
+                    {
+                        HipotesisTxt.Text = noSeAcepta;
+                    }
+                    else { HipotesisTxt.Text = seAcepta; };
                 }
-                else { HipotesisTxt.Text = seAcepta; };
-            }
-            else if (cantInt == 20)
-            {
-                if (Acumulado > 30.1)
+                else if (cantInt == 20)
                 {
-                    HipotesisTxt.Text = noSeAcepta;
+                    if (Acumulado > 30.1)
+                    {
+                        HipotesisTxt.Text = noSeAcepta;
+                    }
+                    else { HipotesisTxt.Text = seAcepta; };
                 }
-                else { HipotesisTxt.Text = seAcepta; };
-            }
-            else{
-                if (Acumulado > 36.4)
+                else
                 {
-                    HipotesisTxt.Text = noSeAcepta;
+                    if (Acumulado > 36.4)
+                    {
+                        HipotesisTxt.Text = noSeAcepta;
+                    }
+                    else { HipotesisTxt.Text = seAcepta; };
                 }
-                else { HipotesisTxt.Text = seAcepta; };
-            }
 
+            }
         }
 
 

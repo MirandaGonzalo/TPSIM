@@ -8,10 +8,10 @@ namespace WindowsFormsApp1.Servicios
 {
     public class Generador
     {
-        public int semilla { get; set; }
-        public int valorA { get; set; }
+        public Int64 semilla { get; set; }
+        public Int64 valorA { get; set; }
         public int valorC { get; set; }
-        public int valorM { get; set; }
+        public Int64 valorM { get; set; }
 
         
 
@@ -23,7 +23,7 @@ namespace WindowsFormsApp1.Servicios
             decimal random = (decimal)(semillaNueva / (decimal)generador.valorM);
 
             //seteamos el valor de la semilla con el valor de la nueva semilla obtenida en el calculo del numero pseudoaleatorio anterior
-            generador.semilla = (int)semillaNueva;
+            generador.semilla = (Int64)semillaNueva;
             
             //retornamos el valor RND generado
             return random;
@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.Servicios
             var random = (decimal)(semillaNueva / (decimal)generador.valorM);
 
             //seteamos el valor de la semilla con el valor de la nueva semilla obtenida en el calculo del numero pseudoaleatorio anterior
-            generador.semilla = (int)semillaNueva;
+            generador.semilla = (Int64)semillaNueva;
 
             //retornamos el valor RND generado
             return random;

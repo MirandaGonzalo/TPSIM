@@ -71,17 +71,19 @@ namespace WindowsFormsApp1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(58, 25);
+            this.label1.Location = new System.Drawing.Point(77, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(302, 20);
+            this.label1.Size = new System.Drawing.Size(366, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Seleccione la cantidad de intervalos:";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(296, 67);
+            this.button1.Location = new System.Drawing.Point(395, 82);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 21);
+            this.button1.Size = new System.Drawing.Size(208, 26);
             this.button1.TabIndex = 7;
             this.button1.Text = "Generar";
             this.button1.UseVisualStyleBackColor = true;
@@ -98,45 +100,61 @@ namespace WindowsFormsApp1
             this.FrecuenciaEsperada,
             this.Column5,
             this.Column6});
-            this.dataInforme.Location = new System.Drawing.Point(60, 110);
+            this.dataInforme.Location = new System.Drawing.Point(80, 135);
+            this.dataInforme.Margin = new System.Windows.Forms.Padding(4);
             this.dataInforme.Name = "dataInforme";
-            this.dataInforme.Size = new System.Drawing.Size(741, 176);
+            this.dataInforme.RowHeadersWidth = 51;
+            this.dataInforme.Size = new System.Drawing.Size(988, 217);
             this.dataInforme.TabIndex = 8;
             // 
             // Desde
             // 
             this.Desde.HeaderText = "Desde";
+            this.Desde.MinimumWidth = 6;
             this.Desde.Name = "Desde";
+            this.Desde.Width = 125;
             // 
             // Hasta
             // 
             this.Hasta.HeaderText = "Hasta";
+            this.Hasta.MinimumWidth = 6;
             this.Hasta.Name = "Hasta";
+            this.Hasta.Width = 125;
             // 
             // MarcaClase
             // 
             this.MarcaClase.HeaderText = "Marca de clase";
+            this.MarcaClase.MinimumWidth = 6;
             this.MarcaClase.Name = "MarcaClase";
+            this.MarcaClase.Width = 125;
             // 
             // FrecuenciaObservada
             // 
             this.FrecuenciaObservada.HeaderText = "Frecuencia observada";
+            this.FrecuenciaObservada.MinimumWidth = 6;
             this.FrecuenciaObservada.Name = "FrecuenciaObservada";
+            this.FrecuenciaObservada.Width = 125;
             // 
             // FrecuenciaEsperada
             // 
             this.FrecuenciaEsperada.HeaderText = "Frecuencia esperada";
+            this.FrecuenciaEsperada.MinimumWidth = 6;
             this.FrecuenciaEsperada.Name = "FrecuenciaEsperada";
+            this.FrecuenciaEsperada.Width = 125;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "C()";
+            this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
+            this.Column5.Width = 125;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "C() Acumulado";
+            this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
+            this.Column6.Width = 125;
             // 
             // dataChi
             // 
@@ -148,40 +166,54 @@ namespace WindowsFormsApp1
             this.Column4,
             this.C,
             this.xd});
-            this.dataChi.Location = new System.Drawing.Point(60, 307);
+            this.dataChi.Location = new System.Drawing.Point(80, 378);
+            this.dataChi.Margin = new System.Windows.Forms.Padding(4);
             this.dataChi.Name = "dataChi";
-            this.dataChi.Size = new System.Drawing.Size(644, 178);
+            this.dataChi.RowHeadersWidth = 51;
+            this.dataChi.Size = new System.Drawing.Size(859, 219);
             this.dataChi.TabIndex = 16;
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Desde";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Hasta";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Frecuencia Observada";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Frecuencia esperada";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
             // 
             // C
             // 
             this.C.HeaderText = "C";
+            this.C.MinimumWidth = 6;
             this.C.Name = "C";
+            this.C.Width = 125;
             // 
             // xd
             // 
             this.xd.HeaderText = "C(acumulado)";
+            this.xd.MinimumWidth = 6;
             this.xd.Name = "xd";
+            this.xd.Width = 125;
             // 
             // CbIntervalos
             // 
@@ -189,39 +221,43 @@ namespace WindowsFormsApp1
             this.CbIntervalos.Items.AddRange(new object[] {
             "Opciones",
             "5 intervalos",
+            "8 intervalos",
             "10 intervalos",
-            "20 intervalos",
-            "25 intervalos"});
-            this.CbIntervalos.Location = new System.Drawing.Point(155, 67);
+            "12 intervalos"});
+            this.CbIntervalos.Location = new System.Drawing.Point(207, 82);
+            this.CbIntervalos.Margin = new System.Windows.Forms.Padding(4);
             this.CbIntervalos.Name = "CbIntervalos";
-            this.CbIntervalos.Size = new System.Drawing.Size(121, 21);
+            this.CbIntervalos.Size = new System.Drawing.Size(160, 24);
             this.CbIntervalos.TabIndex = 17;
             this.CbIntervalos.Text = "Opciones";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(57, 67);
+            this.label5.Location = new System.Drawing.Point(76, 82);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.Size = new System.Drawing.Size(95, 16);
             this.label5.TabIndex = 18;
             this.label5.Text = "INTERVALOS:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 512);
+            this.label2.Location = new System.Drawing.Point(95, 630);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.Size = new System.Drawing.Size(78, 16);
             this.label2.TabIndex = 19;
             this.label2.Text = "HIPOTESIS";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 535);
+            this.label3.Location = new System.Drawing.Point(95, 658);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 20;
             this.label3.Text = "GRAFICO";
             // 
@@ -231,13 +267,14 @@ namespace WindowsFormsApp1
             this.graficoHistograma.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graficoHistograma.Legends.Add(legend1);
-            this.graficoHistograma.Location = new System.Drawing.Point(43, 292);
+            this.graficoHistograma.Location = new System.Drawing.Point(57, 359);
+            this.graficoHistograma.Margin = new System.Windows.Forms.Padding(4);
             this.graficoHistograma.Name = "graficoHistograma";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Intervalos";
             this.graficoHistograma.Series.Add(series1);
-            this.graficoHistograma.Size = new System.Drawing.Size(687, 304);
+            this.graficoHistograma.Size = new System.Drawing.Size(916, 374);
             this.graficoHistograma.TabIndex = 21;
             this.graficoHistograma.Text = "chart1";
             // 
@@ -245,11 +282,11 @@ namespace WindowsFormsApp1
             // 
             this.HipotesisTxt.AutoSize = true;
             this.HipotesisTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HipotesisTxt.Location = new System.Drawing.Point(59, 667);
+            this.HipotesisTxt.Location = new System.Drawing.Point(79, 821);
+            this.HipotesisTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.HipotesisTxt.Name = "HipotesisTxt";
-            this.HipotesisTxt.Size = new System.Drawing.Size(66, 24);
+            this.HipotesisTxt.Size = new System.Drawing.Size(0, 29);
             this.HipotesisTxt.TabIndex = 22;
-            this.HipotesisTxt.Text = "label4";
             this.HipotesisTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // graficoFrecEsperada
@@ -258,13 +295,14 @@ namespace WindowsFormsApp1
             this.graficoFrecEsperada.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.graficoFrecEsperada.Legends.Add(legend2);
-            this.graficoFrecEsperada.Location = new System.Drawing.Point(736, 292);
+            this.graficoFrecEsperada.Location = new System.Drawing.Point(981, 359);
+            this.graficoFrecEsperada.Margin = new System.Windows.Forms.Padding(4);
             this.graficoFrecEsperada.Name = "graficoFrecEsperada";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.graficoFrecEsperada.Series.Add(series2);
-            this.graficoFrecEsperada.Size = new System.Drawing.Size(463, 304);
+            this.graficoFrecEsperada.Size = new System.Drawing.Size(617, 374);
             this.graficoFrecEsperada.TabIndex = 23;
             this.graficoFrecEsperada.Text = "chart1";
             // 
@@ -272,27 +310,28 @@ namespace WindowsFormsApp1
             // 
             this.hipotesisNulaTxt.AutoSize = true;
             this.hipotesisNulaTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hipotesisNulaTxt.Location = new System.Drawing.Point(56, 620);
+            this.hipotesisNulaTxt.Location = new System.Drawing.Point(75, 763);
+            this.hipotesisNulaTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.hipotesisNulaTxt.Name = "hipotesisNulaTxt";
-            this.hipotesisNulaTxt.Size = new System.Drawing.Size(66, 24);
+            this.hipotesisNulaTxt.Size = new System.Drawing.Size(0, 29);
             this.hipotesisNulaTxt.TabIndex = 24;
-            this.hipotesisNulaTxt.Text = "label4";
             this.hipotesisNulaTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // mediaTxt
             // 
             this.mediaTxt.AutoSize = true;
-            this.mediaTxt.Location = new System.Drawing.Point(849, 110);
+            this.mediaTxt.Location = new System.Drawing.Point(1132, 135);
+            this.mediaTxt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mediaTxt.Name = "mediaTxt";
-            this.mediaTxt.Size = new System.Drawing.Size(35, 13);
+            this.mediaTxt.Size = new System.Drawing.Size(44, 16);
             this.mediaTxt.TabIndex = 25;
             this.mediaTxt.Text = "label4";
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1211, 749);
+            this.ClientSize = new System.Drawing.Size(1615, 922);
             this.Controls.Add(this.mediaTxt);
             this.Controls.Add(this.hipotesisNulaTxt);
             this.Controls.Add(this.graficoFrecEsperada);
@@ -306,6 +345,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.dataInforme);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "INFORME Y PRUEBA CHI";
