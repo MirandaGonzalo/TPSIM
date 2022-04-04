@@ -19,12 +19,9 @@ namespace WindowsFormsApp1.Servicios
         public  decimal GeneradorRandomCongruencial(Generador generador)
         {
             decimal semillaNueva = (generador.valorA * generador.semilla + generador.valorC) % generador.valorM;
-
             decimal random = (decimal)(semillaNueva / (decimal)generador.valorM);
-
             //seteamos el valor de la semilla con el valor de la nueva semilla obtenida en el calculo del numero pseudoaleatorio anterior
             generador.semilla = (Int64)semillaNueva;
-            
             //retornamos el valor RND generado
             return random;
 

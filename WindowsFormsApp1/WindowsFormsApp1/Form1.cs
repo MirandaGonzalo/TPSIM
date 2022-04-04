@@ -34,14 +34,14 @@ namespace WindowsFormsApp1
 
             // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
             var semilla = Convert.ToInt64(TxtSemilla.Text);
-            var a = Convert.ToInt64(TxtA.Text);
-            var m = Convert.ToInt64(TxtM.Text);
+            var k = Convert.ToInt64(TxtK.Text);
+            var g = Convert.ToInt64(TxtG.Text);
             var c = Convert.ToInt32(TxtC.Text);
 
             // asigamos los datos de los parametros al objeto generador
             generador.semilla = semilla;
-            generador.valorA = a;
-            generador.valorM = m;
+            generador.valorA = 4 * k + 1;
+            generador.valorM = (int)Math.Pow(2,g);
             generador.valorC = c;
 
             var cantMuestras = n;
@@ -170,15 +170,16 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.Rows.Clear();
 
             var listaIteracion = new List<Iteracion>();
-            var semilla = Convert.ToInt32(TxtSemilla.Text);
-            var a = Convert.ToInt32(TxtA.Text);
-            var m = Convert.ToInt32(TxtM.Text);
-            
-            
-            //Asignasmos los datos al objeto generador
+            // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
+            var semilla = Convert.ToInt64(TxtSemilla.Text);
+            var k = Convert.ToInt64(TxtK.Text);
+            var g = Convert.ToInt64(TxtG.Text);
+
+            // asigamos los datos de los parametros al objeto generador
             generador.semilla = semilla;
-            generador.valorA = a;
-            generador.valorM = m;
+            generador.valorA = 4 * k + 1;
+            generador.valorM = (Int64)Math.Pow(2, g);
+            generador.valorC = 0;
 
             var cantMuestras = n;
 
@@ -241,9 +242,7 @@ namespace WindowsFormsApp1
                 DgvTablaIteraciones.Rows.Add(fila);
                 numeros = numerosAleatorios;
             }
-
         }
-
 
         private void BotonSimular_Click(object sender, EventArgs e)
         {
@@ -257,7 +256,6 @@ namespace WindowsFormsApp1
                 if (CbGeneracionPorTeclado.Checked)
                 {
                     // si se selecciona ingresar n por teclado ,tomamos el valor ingresado
-
                     n = Convert.ToInt32(txtN.Text);
                 }
                 //segun se seleccione un metodod se invoca a la funcion correspondiente
@@ -285,16 +283,16 @@ namespace WindowsFormsApp1
         //METODOS PARA AHCER VISIBLE O NO A LOS TEXTBOX
         private void habilitarTextBoxMulti()
         {
-            TxtA.Enabled = true;
-            TxtM.Enabled = true;
+            TxtK.Enabled = true;
+            TxtG.Enabled = true;
             TxtSemilla.Enabled = true;
             TxtC.Enabled = false;
         }
         private void habilitarTextBoxMixto()
         {
             TxtC.Enabled = true;
-            TxtA.Enabled = true;
-            TxtM.Enabled = true;
+            TxtK.Enabled = true;
+            TxtG.Enabled = true;
             TxtSemilla.Enabled = true;
         }
         private void RbCongruencialMIxto_CheckedChanged(object sender, EventArgs e)
@@ -306,8 +304,8 @@ namespace WindowsFormsApp1
         {
             TxtSemilla.Enabled = false;
             TxtC.Enabled = false;
-            TxtA.Enabled = false;
-            TxtM.Enabled = false;
+            TxtK.Enabled = false;
+            TxtG.Enabled = false;
         }
         private void RbLenguajeC_CheckedChanged(object sender, EventArgs e)
         {

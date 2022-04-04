@@ -45,7 +45,6 @@ namespace WindowsFormsApp1
                 return -1;    
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             AcumuladorMedia = 0;
@@ -67,7 +66,6 @@ namespace WindowsFormsApp1
                 List<int> frecObservada = new List<int>();
                 List<decimal> limitesSup = new List<decimal>();
 
-
                 //en esta iteracion obtenemos una arreglo de los valores(limitesSup) de los limites superiores
                 // de cada intervalo
                 for (int i = 0; i < cantIntervalos; i++)
@@ -75,11 +73,10 @@ namespace WindowsFormsApp1
                     frecObservada.Add(0);
                     decimal aux = (i) + 1;
                     //creamos aux2 para modificar el limite superior del intervalo
-                    var aux2 = (decimal)0.01;
+                    var aux2 = (decimal)0.00001;
                     var limiteSuperior = (decimal)((aux / cantIntervalos) - aux2);
                     limitesSup.Add(limiteSuperior);
                 }
-
                 //iteramos segun la cantidad de numeros que generamos en el formulario 1 y acumulamos 
                 // la frecuencia de cada intervalo en un arreglo llamada frecObservada.
                 for (int i = 0; i < leng; i++)
@@ -142,10 +139,11 @@ namespace WindowsFormsApp1
                     acumulado += estaditicoM;
                     Acumulado = (double)(Math.Truncate(acumulado * 10000) / 10000);
                     //Armamos el string que mostraremos en la tabla grafica(dataGrid)
+                    var des = (decimal)Math.Truncate(1000 * items[i].Desde / 1000);
                     var fila = new string[]
                     {
                         //items[i].Desde.ToString(),
-                        items[i].Desde.ToString(),
+                        des.ToString(),
                         items[i].Hasta.ToString(),
                         items[i].MarcaClase.ToString(),
                         items[i].FrecuenciaObservada.ToString(),
@@ -208,48 +206,34 @@ namespace WindowsFormsApp1
                 hipotesisNulaTxt.Text = "Hipótesis nula: “la serie de datos corresponde a una distribución uniforme entre 0 y 1”.";
 
                 var seAcepta = "NO SE RECHAZA LA HIPOTESIS";
-
                 var noSeAcepta = "SE RECHAZA LA HIPOTESIS";
-
+                var resH = "";
                 // Comparamos el valor obtenido de la prueba de bondad de chi cuadrado 
                 // para saber si la serie generada pertenece a la distribucion uniforme
-
-                if (cantInt == 5)
+                var noAcepta = true;
+                if (cantInt == 5 && Acumulado > 9.49)
                 {
-                    if (Acumulado > 9.49)
-                    {
-                        HipotesisTxt.Text = noSeAcepta;
-                    }
-                    else { HipotesisTxt.Text = seAcepta; };
+                    resH = noSeAcepta;
                 }
-                else if (cantInt == 10)
+                else if (cantInt == 8 && Acumulado > 14.1)
                 {
-                    if (Acumulado > 16.9)
-                    {
-                        HipotesisTxt.Text = noSeAcepta;
-                    }
-                    else { HipotesisTxt.Text = seAcepta; };
+                    resH = noSeAcepta;
                 }
-                else if (cantInt == 20)
+                else if (cantInt == 10 && Acumulado > 16.9)
                 {
-                    if (Acumulado > 30.1)
-                    {
-                        HipotesisTxt.Text = noSeAcepta;
-                    }
-                    else { HipotesisTxt.Text = seAcepta; };
+                    resH = noSeAcepta;
                 }
-                else
+                else if (cantInt == 12 && Acumulado > 19.7)
                 {
-                    if (Acumulado > 36.4)
-                    {
-                        HipotesisTxt.Text = noSeAcepta;
-                    }
-                    else { HipotesisTxt.Text = seAcepta; };
-                }
+                    resH = noSeAcepta;
+                } else
+                {
+                    resH = seAcepta;
+                }                    
+                HipotesisTxt.Text = resH;
 
             }
         }
-
 
         // METODO QUE CALCULA EL VALOR DEL ESTADISTICO DE PRUEBA
         private decimal CalcularEstadistico(decimal frecuenciaO, decimal frecuenciaE)
