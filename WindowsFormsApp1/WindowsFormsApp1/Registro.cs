@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
         public decimal MarcaClase { get; set; }
         public decimal FrecuenciaObservada { get; set; }
         public decimal FrecuenciaEsperada { get; set; }
+        public decimal FrecuenciaRelativa { get; set; }
         public decimal EstadisticoMuestra { get; set; }
         public decimal EstadisticoMuestraAcumulado { get; set; }
     }
