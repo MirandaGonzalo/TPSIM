@@ -24,7 +24,15 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.AllowUserToAddRows = false;
         }
 
-
+        private long calcularPotencia(int potencia)
+        {
+            long res = 2;
+            for (int i = 0; i < potencia; i++)
+            {
+                res *= (i + 1);
+            }
+            return res;
+        }
         private void generarMetodoCongruencialMixto(int n)
         {
             //limpiamos la tabla de numeros random
@@ -32,64 +40,71 @@ namespace WindowsFormsApp1
             //se crea la lista de objetos iteracion para guadar los datos de los numneros pseudoaleatorios creados
             var listaIteracion = new List<Iteracion>();
 
-            // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
-            var semilla = Convert.ToInt64(TxtSemilla.Text);
-            var k = Convert.ToInt64(TxtK.Text);
-            var g = Convert.ToInt64(TxtG.Text);
-            var c = Convert.ToInt32(TxtC.Text);
-
-            // asigamos los datos de los parametros al objeto generador
-            generador.semilla = semilla;
-            generador.valorA = 4 * k + 1;
-            generador.valorM = (int)Math.Pow(2,g);
-            generador.valorC = c;
-
-            var cantMuestras = n;
-
-            // validamos los datos ingresados que  sean correctos
-            if (generador.validarDatosIngresados(generador))
+            if (TxtSemilla.Text.Equals("") || TxtK.Text.Equals("") || TxtG.Text.Equals("") || TxtC.Text.Equals(""))
             {
-                var cantMuestrasCalc = cantMuestras + 1;
-                //iteramos segun la cantidad de valores ingresados por teclado o seteado a 20
-                for (var iteracion = 1; cantMuestrasCalc > iteracion; iteracion++)
-                {
-                    // se crea el numero pseudoaleatorio llamando al metodo del objeto generador 
-                    // que se encarga de realizar el calculo de dicho nuemro RND
-                    decimal NroRandom = (decimal)generador.GeneradorRandomCongruencial(generador);
-
-                    // creamos un objeto iteracion para guardar los datos creados
-                    var itera = new Iteracion()
-                    {
-                        numneroIteracion = iteracion,
-                        valorRaizX = generador.semilla,
-                        //truncamos el valor del RND obtenido
-                        numeroRandom = Math.Truncate(NroRandom * 10000) / 10000
-                    };
-                    //agregamos a la lista cada iteracion para luego ser mostrada
-                    listaIteracion.Add(itera);
-                }
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
-
-                //recorremos la lista de iteraciones para ser mostrados por tabla grafica
-                foreach (var item in listaIteracion)
-                {
-                    var fila = new string[]
-                    {
-                        item.numneroIteracion.ToString(),
-                        item.valorRaizX.ToString(),
-                        item.numeroRandom.ToString(),
-                    };
-                    DgvTablaIteraciones.Rows.Add(fila);
-                    //agregamos los numeros generados a una lista que luego se la pasaremos al 
-                    //formulario 2 para realizar la parte de la tabla de frecuencia y prueba de bondad
-                    numeros.Add(item.numeroRandom);
-                }
             }
             else
             {
-                MessageBox.Show("Debe ingresar los datos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
+                var semilla = Convert.ToInt64(TxtSemilla.Text);
+                var k = Convert.ToInt64(TxtK.Text);
+                var g = Convert.ToInt64(TxtG.Text);
+                var c = Convert.ToInt32(TxtC.Text);
 
+                // asigamos los datos de los parametros al objeto generador
+                generador.semilla = semilla;
+                generador.valorA = 4 * k + 1;
+                generador.valorM = calcularPotencia((int)g);
+                generador.valorC = c;
+
+                var cantMuestras = n;
+
+                // validamos los datos ingresados que  sean correctos
+                if (generador.validarDatosIngresados(generador))
+                {
+                    var cantMuestrasCalc = cantMuestras + 1;
+                    //iteramos segun la cantidad de valores ingresados por teclado o seteado a 20
+                    for (var iteracion = 1; cantMuestrasCalc > iteracion; iteracion++)
+                    {
+                        // se crea el numero pseudoaleatorio llamando al metodo del objeto generador 
+                        // que se encarga de realizar el calculo de dicho nuemro RND
+                        decimal NroRandom = (decimal)generador.GeneradorRandomCongruencial(generador);
+
+                        // creamos un objeto iteracion para guardar los datos creados
+                        var itera = new Iteracion()
+                        {
+                            numneroIteracion = iteracion,
+                            valorRaizX = generador.semilla,
+                            //truncamos el valor del RND obtenido
+                            numeroRandom = Math.Truncate(NroRandom * 10000) / 10000
+                        };
+                        //agregamos a la lista cada iteracion para luego ser mostrada
+                        listaIteracion.Add(itera);
+                    }
+
+
+                    //recorremos la lista de iteraciones para ser mostrados por tabla grafica
+                    foreach (var item in listaIteracion)
+                    {
+                        var fila = new string[]
+                        {
+                        item.numneroIteracion.ToString(),
+                        item.valorRaizX.ToString(),
+                        item.numeroRandom.ToString(),
+                        };
+                        DgvTablaIteraciones.Rows.Add(fila);
+                        //agregamos los numeros generados a una lista que luego se la pasaremos al 
+                        //formulario 2 para realizar la parte de la tabla de frecuencia y prueba de bondad
+                        numeros.Add(item.numeroRandom);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar los datos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         //este metodo nos permite generar otro numero pseudoaleatorio con el metodo cong mixto a la vez
@@ -170,45 +185,53 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.Rows.Clear();
 
             var listaIteracion = new List<Iteracion>();
-            // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
-            var semilla = Convert.ToInt64(TxtSemilla.Text);
-            var k = Convert.ToInt64(TxtK.Text);
-            var g = Convert.ToInt64(TxtG.Text);
 
-            // asigamos los datos de los parametros al objeto generador
-            generador.semilla = semilla;
-            generador.valorA = 4 * k + 1;
-            generador.valorM = (Int64)Math.Pow(2, g);
-            generador.valorC = 0;
-
-            var cantMuestras = n;
-
-            // validamos los datos ingresados por parametro
-            if (generador.validarDatosIngresados(generador))
+            if (TxtSemilla.Text.Equals("") || TxtK.Text.Equals("") || TxtG.Text.Equals(""))
             {
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                var cantMuestrasCalc = cantMuestras + 1;
-                //recorremos segun la cant ingresada o seteada a 20
-                for (var iteracion = 1; cantMuestrasCalc > iteracion; iteracion++)
-                {     
-                    //llamamos al metodo correspondiente para generar el valor RND
-                    decimal NroRandom = (decimal)generador.GeneradorRandomMultiplicativo(generador);
-                    //generamos el string para mostrar en la tabla                   
-                    var fila = new string[]
-                    {
-                        iteracion.ToString(),
-                        generador.semilla.ToString(),
-                        (Math.Truncate(NroRandom * 10000) / 10000).ToString(),
-                    };
-                    DgvTablaIteraciones.Rows.Add(fila);
-                    numeros.Add((Math.Truncate(NroRandom * 10000) / 10000));
-                }
             }
             else
             {
-                MessageBox.Show("Debe ingresar los datos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                // obtenemos los paratros del metodo congruencial mixto ingresados por teclado
+                var semilla = Convert.ToInt64(TxtSemilla.Text);
+                var k = Convert.ToInt64(TxtK.Text);
+                var g = Convert.ToInt64(TxtG.Text);
 
+                // asigamos los datos de los parametros al objeto generador
+                generador.semilla = semilla;
+                generador.valorA = 4 * k + 1;
+                generador.valorM = calcularPotencia((int)g);
+                generador.valorC = 0;
+
+                var cantMuestras = n;
+
+                // validamos los datos ingresados por parametro
+                if (generador.validarDatosIngresados(generador))
+                {
+
+                    var cantMuestrasCalc = cantMuestras + 1;
+                    //recorremos segun la cant ingresada o seteada a 20
+                    for (var iteracion = 1; cantMuestrasCalc > iteracion; iteracion++)
+                    {     
+                        //llamamos al metodo correspondiente para generar el valor RND
+                        decimal NroRandom = (decimal)generador.GeneradorRandomMultiplicativo(generador);
+                        //generamos el string para mostrar en la tabla                   
+                        var fila = new string[]
+                        {
+                            iteracion.ToString(),
+                            generador.semilla.ToString(),
+                            (Math.Truncate(NroRandom * 10000) / 10000).ToString(),
+                        };
+                        DgvTablaIteraciones.Rows.Add(fila);
+                        numeros.Add((Math.Truncate(NroRandom * 10000) / 10000));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debe ingresar los datos correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
 

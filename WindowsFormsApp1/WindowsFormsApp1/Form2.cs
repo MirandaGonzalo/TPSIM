@@ -114,14 +114,17 @@ namespace WindowsFormsApp1
                     }
                     else
                     {
-                        registro.Desde = acumuladorDesde + (limitesSup[a] - limitesSup[a - 1]);
+                        registro.Desde = Math.Truncate((acumuladorDesde + (limitesSup[a] - limitesSup[a - 1])) * 10000) / 10000;
                         acumuladorDesde += (limitesSup[a] - limitesSup[a - 1]);
                     }
                     // aca guardamos los valores de cada registro que seran los datos que mostraremos 
                     // en la tabla de frecuencias
-                    registro.Hasta = (decimal)(limitesSup[a]);
-                    registro.MarcaClase = (decimal)((registro.Hasta + registro.Desde) / 2);
+                    decimal has = Math.Truncate(10000 * limitesSup[a]) / 10000;
+                    registro.Hasta = (decimal)(has);
+                    decimal marcaClase = Math.Truncate(10000 * ((decimal)((registro.Hasta + registro.Desde) / 2))) / 10000;
+                    registro.MarcaClase = marcaClase;
                     decimal frecRel = frecObservada[a] / (decimal)leng;
+                    decimal frecRelativa = Math.Truncate(10000 * frecRel) / 10000;
                     registro.FrecuenciaRelativa = frecRel;
                     registro.FrecuenciaObservada = frecObservada[a];
                     registro.FrecuenciaEsperada = frecEsperada;
@@ -140,37 +143,21 @@ namespace WindowsFormsApp1
                     acumulado += estaditicoM;
                     Acumulado = (double)(Math.Truncate(acumulado * 10000) / 10000);
                     //Armamos el string que mostraremos en la tabla grafica(dataGrid)
-                    decimal des = Math.Truncate(10000 * items[i].Desde) / 10000;
-                    decimal marcaClase = Math.Truncate(10000 * items[i].MarcaClase) / 10000;
-
-                    decimal frecRelativa = Math.Truncate(10000 * items[i].FrecuenciaRelativa) / 10000;
-                    decimal has = Math.Truncate(10000 * items[i].Hasta) / 10000;
-
-                    acumuladoFrecRel += frecRelativa;
+                    acumuladoFrecRel += items[i].FrecuenciaRelativa;
                     var fila = new string[]
                     {
                         //items[i].Desde.ToString(),
-                        des.ToString(),
-                        has.ToString(),
-                        marcaClase.ToString(),
+                        items[i].Desde.ToString(),
+                        items[i].Hasta.ToString(),
+                        items[i].MarcaClase.ToString(),
                         items[i].FrecuenciaObservada.ToString(),
-                        frecRelativa.ToString(),
+                        items[i].FrecuenciaRelativa.ToString(),
                         acumuladoFrecRel.ToString(),
                         items[i].FrecuenciaEsperada.ToString(),
                         estaditicoM.ToString(),
                         Acumulado.ToString()
                     };
                     dataInforme.Rows.Add(fila);
-                    //var filaChi = new string[]
-                    //{
-                    //    items[i].Desde.ToString(),
-                    //    items[i].Hasta.ToString(),
-                    //    items[i].FrecuenciaObservada.ToString(),
-                    //    items[i].FrecuenciaEsperada.ToString(),
-                    //    estaditicoM.ToString(),
-                    //    acumulado.ToString()
-                    //};
-                    //dataChi.Rows.Add(filaChi);
                 }
 
                 //GENERACION DE GRAFICO CON HERRAMIENTA CHART
@@ -182,13 +169,11 @@ namespace WindowsFormsApp1
                 graficoHistograma.Palette = ChartColorPalette.Berry;
                 foreach (var item in items)
                 {
-                    decimal desde = (Math.Truncate(10000 * item.Desde) / 10000);
-                    decimal hasta = (Math.Truncate(10000 * item.Hasta) / 10000);
                     var serie = item.Desde.ToString();
                     // creamos el objeto serie para trabajar con el grafico
                     Series ser = graficoHistograma.Series.Add(serie);
                     // creamos el string con los datos de cada intervalo
-                    var label = "[" + desde.ToString() + " - " + hasta.ToString() + "]";
+                    var label = "[" + item.Desde.ToString() + " - " + item.Hasta.ToString() + "]";
                     // con la propiedad label muestro el valor de la frec observada a intervalos del histograma
                     ser.Label = item.FrecuenciaObservada.ToString();
                     //asignamos el label
@@ -206,11 +191,11 @@ namespace WindowsFormsApp1
                 graficoFrecEsperada.Palette = ChartColorPalette.Berry;
                 foreach (var item in items)
                 {
-                    decimal desde = (Math.Truncate(10000 * item.Desde) / 10000);
-                    decimal hasta = (Math.Truncate(10000 * item.Hasta) / 10000);
+                    //decimal desde = (Math.Truncate(10000 * item.Desde) / 10000);
+                    //decimal hasta = (Math.Truncate(10000 * item.Hasta) / 10000);
                     var serie = item.Desde.ToString();
                     Series ser = graficoFrecEsperada.Series.Add(serie);
-                    var label = "[" + desde.ToString() + " - " + hasta.ToString() + "]";
+                    var label = "[" + item.Desde.ToString() + " - " + item.Hasta.ToString() + "]";
                     ser.Label = item.FrecuenciaEsperada.ToString();
                     ser.Name = label;
                     ser.Points.Add((double)item.FrecuenciaEsperada);
@@ -223,7 +208,6 @@ namespace WindowsFormsApp1
                 var resH = "";
                 // Comparamos el valor obtenido de la prueba de bondad de chi cuadrado 
                 // para saber si la serie generada pertenece a la distribucion uniforme
-                var noAcepta = true;
                 if (cantInt == 5 && Acumulado > 9.49)
                 {
                     resH = noSeAcepta;

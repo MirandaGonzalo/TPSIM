@@ -38,12 +38,6 @@ namespace WindowsFormsApp1
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataInforme = new System.Windows.Forms.DataGridView();
-            this.CbIntervalos = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.graficoHistograma = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.HipotesisTxt = new System.Windows.Forms.Label();
-            this.graficoFrecEsperada = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.hipotesisNulaTxt = new System.Windows.Forms.Label();
             this.Desde = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hasta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MarcaClase = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +47,12 @@ namespace WindowsFormsApp1
             this.FrecuenciaEsperada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CbIntervalos = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.graficoHistograma = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.HipotesisTxt = new System.Windows.Forms.Label();
+            this.graficoFrecEsperada = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.hipotesisNulaTxt = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataInforme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistograma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoFrecEsperada)).BeginInit();
@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(58, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(302, 20);
@@ -70,7 +70,7 @@ namespace WindowsFormsApp1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(296, 67);
+            this.button1.Location = new System.Drawing.Point(292, 63);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(156, 21);
             this.button1.TabIndex = 7;
@@ -94,84 +94,8 @@ namespace WindowsFormsApp1
             this.dataInforme.Location = new System.Drawing.Point(60, 94);
             this.dataInforme.Name = "dataInforme";
             this.dataInforme.RowHeadersWidth = 51;
-            this.dataInforme.Size = new System.Drawing.Size(1110, 176);
+            this.dataInforme.Size = new System.Drawing.Size(1110, 234);
             this.dataInforme.TabIndex = 8;
-            // 
-            // CbIntervalos
-            // 
-            this.CbIntervalos.FormattingEnabled = true;
-            this.CbIntervalos.Items.AddRange(new object[] {
-            "Opciones",
-            "5 intervalos",
-            "8 intervalos",
-            "10 intervalos",
-            "12 intervalos"});
-            this.CbIntervalos.Location = new System.Drawing.Point(155, 67);
-            this.CbIntervalos.Name = "CbIntervalos";
-            this.CbIntervalos.Size = new System.Drawing.Size(121, 21);
-            this.CbIntervalos.TabIndex = 17;
-            this.CbIntervalos.Text = "Opciones";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(57, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "INTERVALOS:";
-            // 
-            // graficoHistograma
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.graficoHistograma.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.graficoHistograma.Legends.Add(legend1);
-            this.graficoHistograma.Location = new System.Drawing.Point(60, 276);
-            this.graficoHistograma.Name = "graficoHistograma";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Intervalos";
-            this.graficoHistograma.Series.Add(series1);
-            this.graficoHistograma.Size = new System.Drawing.Size(667, 304);
-            this.graficoHistograma.TabIndex = 21;
-            this.graficoHistograma.Text = "chart1";
-            // 
-            // HipotesisTxt
-            // 
-            this.HipotesisTxt.AutoSize = true;
-            this.HipotesisTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HipotesisTxt.Location = new System.Drawing.Point(59, 667);
-            this.HipotesisTxt.Name = "HipotesisTxt";
-            this.HipotesisTxt.Size = new System.Drawing.Size(0, 24);
-            this.HipotesisTxt.TabIndex = 22;
-            this.HipotesisTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // graficoFrecEsperada
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.graficoFrecEsperada.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.graficoFrecEsperada.Legends.Add(legend2);
-            this.graficoFrecEsperada.Location = new System.Drawing.Point(740, 276);
-            this.graficoFrecEsperada.Name = "graficoFrecEsperada";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.graficoFrecEsperada.Series.Add(series2);
-            this.graficoFrecEsperada.Size = new System.Drawing.Size(430, 304);
-            this.graficoFrecEsperada.TabIndex = 23;
-            this.graficoFrecEsperada.Text = "chart1";
-            // 
-            // hipotesisNulaTxt
-            // 
-            this.hipotesisNulaTxt.AutoSize = true;
-            this.hipotesisNulaTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hipotesisNulaTxt.Location = new System.Drawing.Point(56, 620);
-            this.hipotesisNulaTxt.Name = "hipotesisNulaTxt";
-            this.hipotesisNulaTxt.Size = new System.Drawing.Size(0, 24);
-            this.hipotesisNulaTxt.TabIndex = 24;
-            this.hipotesisNulaTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // Desde
             // 
@@ -232,11 +156,89 @@ namespace WindowsFormsApp1
             this.Column6.Name = "Column6";
             this.Column6.Width = 125;
             // 
+            // CbIntervalos
+            // 
+            this.CbIntervalos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbIntervalos.FormattingEnabled = true;
+            this.CbIntervalos.Items.AddRange(new object[] {
+            "Opciones",
+            "5 intervalos",
+            "8 intervalos",
+            "10 intervalos",
+            "12 intervalos"});
+            this.CbIntervalos.Location = new System.Drawing.Point(151, 63);
+            this.CbIntervalos.Name = "CbIntervalos";
+            this.CbIntervalos.Size = new System.Drawing.Size(121, 21);
+            this.CbIntervalos.TabIndex = 17;
+            this.CbIntervalos.Text = "Opciones";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(57, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "INTERVALOS:";
+            // 
+            // graficoHistograma
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.graficoHistograma.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graficoHistograma.Legends.Add(legend1);
+            this.graficoHistograma.Location = new System.Drawing.Point(60, 348);
+            this.graficoHistograma.Name = "graficoHistograma";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Intervalos";
+            this.graficoHistograma.Series.Add(series1);
+            this.graficoHistograma.Size = new System.Drawing.Size(667, 317);
+            this.graficoHistograma.TabIndex = 21;
+            this.graficoHistograma.Text = "chart1";
+            // 
+            // HipotesisTxt
+            // 
+            this.HipotesisTxt.AutoSize = true;
+            this.HipotesisTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HipotesisTxt.Location = new System.Drawing.Point(81, 766);
+            this.HipotesisTxt.Name = "HipotesisTxt";
+            this.HipotesisTxt.Size = new System.Drawing.Size(0, 24);
+            this.HipotesisTxt.TabIndex = 22;
+            this.HipotesisTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // graficoFrecEsperada
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.graficoFrecEsperada.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.graficoFrecEsperada.Legends.Add(legend2);
+            this.graficoFrecEsperada.Location = new System.Drawing.Point(740, 348);
+            this.graficoFrecEsperada.Name = "graficoFrecEsperada";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.graficoFrecEsperada.Series.Add(series2);
+            this.graficoFrecEsperada.Size = new System.Drawing.Size(430, 317);
+            this.graficoFrecEsperada.TabIndex = 23;
+            this.graficoFrecEsperada.Text = "chart1";
+            // 
+            // hipotesisNulaTxt
+            // 
+            this.hipotesisNulaTxt.AutoSize = true;
+            this.hipotesisNulaTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hipotesisNulaTxt.Location = new System.Drawing.Point(78, 719);
+            this.hipotesisNulaTxt.Name = "hipotesisNulaTxt";
+            this.hipotesisNulaTxt.Size = new System.Drawing.Size(0, 24);
+            this.hipotesisNulaTxt.TabIndex = 24;
+            this.hipotesisNulaTxt.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 749);
+            this.ClientSize = new System.Drawing.Size(1448, 853);
             this.Controls.Add(this.hipotesisNulaTxt);
             this.Controls.Add(this.graficoFrecEsperada);
             this.Controls.Add(this.HipotesisTxt);
