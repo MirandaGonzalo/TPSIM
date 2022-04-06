@@ -26,10 +26,10 @@ namespace WindowsFormsApp1
 
         private long calcularPotencia(int potencia)
         {
-            long res = 2;
+            long res = 1;
             for (int i = 0; i < potencia; i++)
             {
-                res *= (i + 1);
+                res *= 2;
             }
             return res;
         }
