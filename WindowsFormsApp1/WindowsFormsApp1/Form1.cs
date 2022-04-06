@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
             DgvTablaIteraciones.AllowUserToAddRows = false;
         }
 
+        //Función para calcular el valor de M a partir del g ingresado por el usuario
         private long calcularPotencia(int potencia)
         {
             long res = 1;
